@@ -1,5 +1,7 @@
 import axios from 'axios';
 import React,{Component} from 'react';
+
+
 class App extends Component {
 
   state = {
@@ -40,8 +42,16 @@ class App extends Component {
 
     // Request made to the backend api
     // Send formData object
-    axios.post("http://localhost:5000/api/upload", formData, config);
+    axios.post("http://localhost:5000/api/upload", formData, config)
+        .then(res => {
+            var img = document.createElement('img');
+            var bytestring = res.data['image']
+            var image = bytestring.split('\'')[1];
+            img.src = 'data:image/jpeg;base64,' + image;
+            document.body.appendChild(img);
+        });
   };
+
 
   // File content to be displayed after
   // file upload is complete
@@ -73,7 +83,7 @@ class App extends Component {
     return (
         <div>
           <h1>
-            GeeksforGeeks
+            Hello World
           </h1>
           <h3>
             File Upload using React!
