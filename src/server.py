@@ -1,14 +1,20 @@
 import base64
 import io
 import os
+import urllib.request
+import json
+
 from PIL import Image
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from flask_ngrok import run_with_ngrok
+from test import *
 
 # Initialize the Flask application
 app = Flask(__name__)
 # apply CORS filter
 CORS(app)
+run_with_ngrok(app)
 
 
 # route http posts to this method
@@ -30,6 +36,9 @@ def upload_file():
 
     return jsonify({'image': str(img_base64)})
 
+@app.route('/', methods=['GET'])
+def test_hello():
+    return "<h1>Hello World</h1>"
 
 def create_tmp_if_not_exists():
     if not os.path.exists('tmp'):
@@ -43,4 +52,5 @@ if __name__ == "__main__":
     if (create_tmp_if_not_exists()):
         print("Created tmp folder...")
     print("Starting server")
-    app.run(host="localhost", port=5000)
+    # get_styled_picture(os.path.join('tmp', '48872.jpg'), os.path.join('tmp', '48872.jpg'), 0.5)
+    app.run()
