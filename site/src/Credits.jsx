@@ -37,17 +37,17 @@ function Credits() {
                             <br/>
                             <ul style={{fontSize: "1.25em"}}>
                                 <li>
-                                    <a href="https://colab.research.google.com/" target="_blank">
+                                    <a href="https://colab.research.google.com/" target="_blank" rel="noreferrer">
                                         Google Colab
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="https://en.wikipedia.org/wiki/Neural_Style_Transfer" target="_blank">
+                                    <a href="https://en.wikipedia.org/wiki/Neural_Style_Transfer" target="_blank" rel="noreferrer">
                                         Neural Style Transfer Definition
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="https://towardsdatascience.com/light-on-math-machine-learning-intuitive-guide-to-neural-style-transfer-ef88e46697ee" target="_blank">
+                                    <a href="https://towardsdatascience.com/light-on-math-machine-learning-intuitive-guide-to-neural-style-transfer-ef88e46697ee" target="_blank" rel="noreferrer">
                                         NST with TensorFlow
                                     </a>
                                 </li>
