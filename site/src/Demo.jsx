@@ -3,32 +3,6 @@ import React, {Component} from 'react';
 import {Jumbotron, Container, Row, Col, Button, Carousel} from 'react-bootstrap';
 import Dropzone from 'react-dropzone';
 
-// // File content to be displayed after
-// // file upload is complete
-// fileData = () => {
-//   if (this.state.selectedFile) {
-//
-//     return (
-//         <div>
-//           <h2>File Details:</h2>
-//           <p>File Name: {this.state.selectedFile.name}</p>
-//           <p>File Type: {this.state.selectedFile.type}</p>
-//           <p>
-//             Last Modified:{" "}
-//             {this.state.selectedFile.lastModifiedDate.toDateString()}
-//           </p>
-//         </div>
-//     );
-//   } else {
-//     return (
-//         <div>
-//           <br />
-//           <h4>Choose before Pressing the Upload button</h4>
-//         </div>
-//     );
-//   }
-// };
-
 class Demo extends Component {
 
     state = {
@@ -39,6 +13,7 @@ class Demo extends Component {
 
     stylesThumb = null;
     baseThumb = null;
+    currentPromises = [];
 
     onBaseDrop = (acceptedFileArray) => {
         let acceptedFile = acceptedFileArray[0];
@@ -92,45 +67,41 @@ class Demo extends Component {
         this.stylesThumb = null
     }
 
-  // On file upload (click the upload button)
-  uploadFile = (file) => {
-    // Create an object of formData
-    const formData = new FormData();
+    // On file upload (click the upload button)
+    uploadFile = (file) => {
+        // Create an object of formData
+        const formData = new FormData();
 
-    // Update the formData object
-    formData.append(
-        "file",
-        file,
-        file.name
-    );
+        // Update the formData object
+        formData.append(
+            "file",
+            file,
+            file.name
+        );
 
-      let config = {
-          headers: {
-              "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE",
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Headers": "Content-Type,Authorization,X-Requested-With,Content-Length,Accept,Origin,",
-              "Access-Control-Allow-Credentials": "true"
-          }
-      }
+        let config = {
+            headers: {
+                "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Headers": "Content-Type,Authorization,X-Requested-With,Content-Length,Accept,Origin,",
+                "Access-Control-Allow-Credentials": "true"
+            }
+        }
 
-    // Details of the uploaded file
-    console.log(file);
+        // Details of the uploaded file
+        console.log(file);
 
-    // Request made to the backend api
-    // Send formData object
-    axios.post("http://localhost:5000/api/upload", formData, config)
-        .then(res => {
-            // var img = document.createElement('img');
-            // var bytestring = res.data['image']
-            // var image = bytestring.split('\'')[1];
-            // img.src = 'data:image/jpeg;base64,' + image;
-            // document.body.appendChild(img);
-        })
-        .catch(res => {
-            console.log(res);
-            alert("There was an error in your request");
-        });
-  };
+        // Request made to the backend api
+        // Send formData object
+        this.currentPromises.push(axios.post("http://localhost:5000/api/upload", formData, config)
+            .then(res => {
+                console.log(res);
+            })
+            .catch(res => {
+                console.log(res);
+                alert("There was an error in your request");
+            }));
+        };
 
     sendNSTRequest = async () => {
         if (this.state.selectedBaseImage === null) {
@@ -146,31 +117,34 @@ class Demo extends Component {
             this.uploadFile(styles);
         }
 
-        let config = {
-            headers: {
-                "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE",
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Headers": "Content-Type,Authorization,X-Requested-With,Content-Length,Accept,Origin,",
-                "Access-Control-Allow-Credentials": "true"
-            }
-        }
+        Promise.all(this.currentPromises).then( () => {
+            this.currentPromises = [];
+            let config = {
+                headers: {
+                    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE",
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Headers": "Content-Type,Authorization,X-Requested-With,Content-Length,Accept,Origin,",
+                    "Access-Control-Allow-Credentials": "true"
+                }
+            };
 
-        axios.post("http://localhost:5000/api/nst", {
-            "base_image": this.state.selectedBaseImage.name,
-            "style_images": this.state.selectedStyleImages.map(files => files.name)
-        }, config)
-            .then(res => {
-                // var img = document.createElement('img');
-                // var bytestring = res.data['image']
-                // var image = bytestring.split('\'')[1];
-                // img.src = 'data:image/jpeg;base64,' + image;
-                // document.body.appendChild(img);
-                console.log(res);
-            })
-            .catch(res => {
-                console.log(res);
-                alert("There was an error in your request");
-            });
+            axios.post("http://localhost:5000/api/nst", {
+                "base_image": this.state.selectedBaseImage.name,
+                "style_images": this.state.selectedStyleImages.map(files => files.name)
+            }, config)
+                .then(res => {
+                    var img = document.createElement('img');
+                    var bytestring = res.data['image']
+                    var image = bytestring.split('\'')[1];
+                    img.src = 'data:image/jpeg;base64,' + image;
+                    document.body.appendChild(img);
+                    // console.log(res);
+                })
+                .catch(res => {
+                    console.log(res);
+                    alert("There was an error in your request");
+                });
+        });
     }
 
   render() {
@@ -252,7 +226,7 @@ class Demo extends Component {
                     {this.state.outputImage === null ?
                         <Button onClick={this.sendNSTRequest}> NSTify it! </Button>
                         :
-                        <h1> Woof! </h1>
+                        <p>Hello</p>
                     }
                     </Container>
                 </Row>

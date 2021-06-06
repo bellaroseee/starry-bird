@@ -1,3 +1,5 @@
+import base64
+import io
 import os
 
 from flask import Flask, request, jsonify, Response
@@ -31,7 +33,7 @@ def upload_file():
     #
     # return jsonify({'image': str(img_base64)})
 
-    return "Files Received!"
+    return "Files Received!", 200
 
 
 @app.route('/api/nst', methods=['POST'])
@@ -52,10 +54,24 @@ def perform_nst():
             return "Invalid Request", 400
         path_to_style_images.append(path_res)
 
+    img = None
+
+    if len(path_to_style_images) == 1:
+        img = get_styled_picture(content=path_to_base_image, style=path_to_style_images[0])
+    else:
+        img = get_multiple_styled_picture(content=path_to_base_image, styles=path_to_style_images)
+
     # clean up all temporary files
     for f in os.listdir('tmp'):
         os.remove(os.path.join('tmp', f))
-    return "lol"
+
+    # img = Image.open(os.path.join('tmp', uploaded_file.filename))
+    raw_bytes = io.BytesIO()
+    img.save(raw_bytes, "JPEG")
+    raw_bytes.seek(0)
+    img_base64 = base64.b64encode(raw_bytes.read())
+
+    return jsonify({'image': str(img_base64)}), 200
 
 
 def create_tmp_if_not_exists():
