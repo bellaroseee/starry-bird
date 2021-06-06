@@ -15,7 +15,7 @@ function Home() {
                     <h1 style={{fontSize: "4em", fontFamily: "'Fredoka One', cursive", color: "#85754d"}}>
                         Starry Bird &nbsp;
                         <img src="assets/icons/bird.png"
-                             onClick={() => window.open("http://cs.uw.edu", '_blank')}
+                             onClick={() => window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", '_blank')}
                              width="10%"
                              height="10%"
                              alt="UW Icon"/>
