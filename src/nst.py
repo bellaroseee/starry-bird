@@ -5,28 +5,29 @@ import numpy as np
 import PIL.Image
 import time
 
-def get_styled_picture(content, style, level_of_style, regularize=False):
+
+def get_styled_picture(content, style, regularize=False):
     """Return combined picture given the content and style image
     Args:
-        content (string): path to content image (PIL.Image)
-        style (string): path to style image (PIL.Image)
-        level_of_style (float): Float representing the level of convolution between the pictures
-        regularize (boolean): whether or not we will regularize the picture
-    Return:
-        image (PIL.Image): combined image of sytle and content image
+        content (str): path to content image (PIL.Image)
+        style (str): path to style image (PIL.Image)
+        regularize (bool, optional): whether or not we will regularize the picture. Defaults to False
+    Returns:
+        image (PIL.Image): combined image of style and content image
     """
+
     @tf.function()
     def train_step(image):
-      with tf.GradientTape() as tape:
-        outputs = extractor(image)
-        loss = style_content_loss(outputs, style_targets, content_targets, style_weight, 
-                       content_weight, num_style_layers, num_content_layers)
-        if (regularize):
-          loss += total_variation_weight*tf.image.total_variation(image)
+        with tf.GradientTape() as tape:
+            outputs = extractor(image)
+            loss = style_content_loss(outputs, style_targets, content_targets, style_weight,
+                                      content_weight, num_style_layers, num_content_layers)
+            if (regularize):
+                loss += total_variation_weight * tf.image.total_variation(image)
 
-      grad = tape.gradient(loss, image)
-      opt.apply_gradients([(grad, image)])
-      image.assign(clip_0_1(image))
+        grad = tape.gradient(loss, image)
+        opt.apply_gradients([(grad, image)])
+        image.assign(clip_0_1(image))
 
     # Load the content and style image
     content_image = load_img(content)
@@ -43,19 +44,19 @@ def get_styled_picture(content, style, level_of_style, regularize=False):
 
     num_style_layers = len(style_layers)
     num_content_layers = len(content_layers)
-    
+
     # extract content and style
     extractor = StyleContentModel(style_layers, content_layers)
     style_targets = extractor(style_image)['style']
     content_targets = extractor(content_image)['content']
     image = tf.Variable(content_image)
-    
+
     # set optimizers and weights
     opt = tf.optimizers.Adam(learning_rate=0.02, beta_1=0.99, epsilon=1e-1)
-    style_weight=1e-2
-    content_weight=1e4
+    style_weight = 1e-2
+    content_weight = 1e4
     # for regularization: 
-    total_variation_weight=30
+    total_variation_weight = 30
 
     start = time.time()
 
@@ -63,21 +64,24 @@ def get_styled_picture(content, style, level_of_style, regularize=False):
     steps_per_epoch = 100
 
     for n in range(epochs):
-      for m in range(steps_per_epoch):
-        train_step(image)
+        for m in range(steps_per_epoch):
+            train_step(image)
 
     end = time.time()
-    print("Total time: {:.1f}".format(end-start))
-    
+    print("Total time: {:.1f}".format(end - start))
+
     return tensor_to_image(image)
 
-def get_multiple_styled_picture(content, styles, level_of_style, regularize=False):
+
+def get_multiple_styled_picture(content, styles, regularize=False):
     """
-    Return combined picture given the content and style image
-        Args:
-            content (PIL.Image): The content image
-            style (list(PIL.Image)): The style image
-            level_of_style (float): Float representing the level of convolution between the pictures
+    Performs NST on multiple image inputs
+    Args:
+        content (str): path to content image (PIL.Image)
+        styles (list(str)): paths to style images (PIL.Image)
+        regularize (bool, optional): whether or not we will regularize the picture. Defaults to False
+    Returns:
+    image (PIL.Image): combined image of style and content image
     """
 
     # load the content image
@@ -101,30 +105,29 @@ def get_multiple_styled_picture(content, styles, level_of_style, regularize=Fals
                 if (regularize):
                     loss += total_variation_weight*tf.image.total_variation(image)
 
-        grad = tape.gradient(loss, image)
-        opt.apply_gradients([(grad, image)])
-        image.assign(clip_0_1(image))
+            grad = tape.gradient(loss, image)
+            opt.apply_gradients([(grad, image)])
+            image.assign(clip_0_1(image))
 
         style_image = load_img(style)
-
 
         num_style_layers = len(style_layers)
         num_content_layers = len(content_layers)
 
-        #extract content and style
+        # extract content and style
         style_targets = None
         content_targets = None
         extractor = StyleContentModel(style_layers, content_layers)
         style_targets = extractor(style_image)['style']
         content_targets = extractor(content_image)['content']
         image = tf.Variable(content_image)
-    
-        #set optimizers and weight
+
+        # set optimizers and weight
         opt = tf.optimizers.Adam(learning_rate=0.02, beta_1=0.99, epsilon=1e-1)
-        style_weight=1e-2
-        content_weight=1e4
+        style_weight = 1e-2
+        content_weight = 1e4
         # for regularization: 
-        total_variation_weight=30
+        total_variation_weight = 30
 
         epochs = 10 if len(styles) < 10 else len(styles)
         steps_per_epoch = 100
@@ -132,24 +135,30 @@ def get_multiple_styled_picture(content, styles, level_of_style, regularize=Fals
         for n in range(epochs // len(styles)):
             for m in range(steps_per_epoch):
                 train_step(image)
-        
+
         content_image = tf.convert_to_tensor(image)
-        
+
     return tensor_to_image(image)
 
 
 def tensor_to_image(tensor):
-    tensor = tensor*255
+    """Returns an image from a tensor
+    Args:
+        tensor (tensorflow.python.framework.ops.EagerTensor): tensor to turn into image
+    Returns:
+        img (PIL.Image): resultant image
+    """
+    tensor = tensor * 255
     tensor = np.array(tensor, dtype=np.uint8)
-    if np.ndim(tensor)>3:
+    if np.ndim(tensor) > 3:
         assert tensor.shape[0] == 1
         tensor = tensor[0]
     return PIL.Image.fromarray(tensor)
 
+
 def load_img(img_pil):
     """Returns a tensor of the image
     Args:
-        # path_img (path in directory): path to the image to turn to tensor
         img_pil (PIL.Image): image to turn to tensor
     Returns:
         img (tensorflow.python.framework.ops.EagerTensor): tensor
@@ -169,8 +178,14 @@ def load_img(img_pil):
     img = img[tf.newaxis, :]
     return img
 
+
 def vgg_layers(layer_names):
-    """ Creates a vgg model that returns a list of intermediate output values."""
+    """Creates a vgg model that returns a list of intermediate output values.
+    Args:
+        layer_names (list(str)): layer names from the VGG model
+    Returns:
+        model (`obj`): tensorflow keras model of the VGG with the new inputs.
+    """
     # Load our model. Load pretrained VGG, trained on imagenet data
     vgg = tf.keras.applications.VGG19(include_top=False, weights='imagenet')
     # don't want to further train the vgg
@@ -181,11 +196,13 @@ def vgg_layers(layer_names):
     model = tf.keras.Model([vgg.input], outputs)
     return model
 
+
 def gram_matrix(input_tensor):
     result = tf.linalg.einsum('bijc,bijd->bcd', input_tensor, input_tensor)
     input_shape = tf.shape(input_tensor)
-    num_locations = tf.cast(input_shape[1]*input_shape[2], tf.float32)
-    return result/(num_locations)
+    num_locations = tf.cast(input_shape[1] * input_shape[2], tf.float32)
+    return result / (num_locations)
+
 
 class StyleContentModel(tf.keras.models.Model):
     def __init__(self, style_layers, content_layers):
@@ -198,40 +215,45 @@ class StyleContentModel(tf.keras.models.Model):
 
     def call(self, inputs):
         "Expects float input in [0,1]"
-        inputs = inputs*255.0
+        inputs = inputs * 255.0
         preprocessed_input = tf.keras.applications.vgg19.preprocess_input(inputs)
         outputs = self.vgg(preprocessed_input)
         style_outputs, content_outputs = (outputs[:self.num_style_layers],
-                                        outputs[self.num_style_layers:])
+                                          outputs[self.num_style_layers:])
 
         style_outputs = [gram_matrix(style_output)
-                        for style_output in style_outputs]
+                         for style_output in style_outputs]
 
         content_dict = {content_name: value
                         for content_name, value
                         in zip(self.content_layers, content_outputs)}
 
         style_dict = {style_name: value
-                    for style_name, value
-                    in zip(self.style_layers, style_outputs)}
+                      for style_name, value
+                      in zip(self.style_layers, style_outputs)}
 
         return {'content': content_dict, 'style': style_dict}
 
 
 def clip_0_1(image):
-    """keeps the pixel of image between 0 and 1"""
+    """Clamps image values to between 0.0 to 1.0
+    Args:
+        image (PIL.Image): Preprocessed image
+    Returns:
+        new image (PIL.Image): Clamped image
+    """
     return tf.clip_by_value(image, clip_value_min=0.0, clip_value_max=1.0)
 
 
-def style_content_loss(outputs, style_targets, content_targets, style_weight, 
+def style_content_loss(outputs, style_targets, content_targets, style_weight,
                        content_weight, num_style_layers, num_content_layers):
     style_outputs = outputs['style']
     content_outputs = outputs['content']
-    style_loss = tf.add_n([tf.reduce_mean((style_outputs[name]-style_targets[name])**2) 
+    style_loss = tf.add_n([tf.reduce_mean((style_outputs[name] - style_targets[name]) ** 2)
                            for name in style_outputs.keys()])
     style_loss *= style_weight / num_style_layers
 
-    content_loss = tf.add_n([tf.reduce_mean((content_outputs[name]-content_targets[name])**2) 
+    content_loss = tf.add_n([tf.reduce_mean((content_outputs[name] - content_targets[name]) ** 2)
                              for name in content_outputs.keys()])
     content_loss *= content_weight / num_content_layers
     loss = style_loss + content_loss

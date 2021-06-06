@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, {Component} from 'react';
-import {Jumbotron, Container, Row, Col, Button, Carousel} from 'react-bootstrap';
+import {Jumbotron, Container, Row, Col, Button, Carousel, Spinner} from 'react-bootstrap';
 import Dropzone from 'react-dropzone';
 
 class Demo extends Component {
@@ -8,7 +8,8 @@ class Demo extends Component {
     state = {
         selectedBaseImage: null,
         selectedStyleImages: [],
-        outputImage: null
+        outputImage: null,
+        resultPending: false
     };
 
     stylesThumb = null;
@@ -55,14 +56,16 @@ class Demo extends Component {
 
     clearBaseImage = () => {
         this.setState({
-            selectedBaseImage: null
+            selectedBaseImage: null,
+            outputImage: null
         });
         this.baseThumb = null
     }
 
     clearStyleImages = () => {
         this.setState({
-            selectedStyleImages: []
+            selectedStyleImages: [],
+            outputImage: null
         });
         this.stylesThumb = null
     }
@@ -112,6 +115,7 @@ class Demo extends Component {
             alert("The style images are empty. You gotta put something there!");
             return;
         }
+        this.setState({resultPending: true});
         this.uploadFile(this.state.selectedBaseImage);
         for (let styles of this.state.selectedStyleImages) {
             this.uploadFile(styles);
@@ -133,16 +137,30 @@ class Demo extends Component {
                 "style_images": this.state.selectedStyleImages.map(files => files.name)
             }, config)
                 .then(res => {
-                    var img = document.createElement('img');
                     var bytestring = res.data['image']
                     var image = bytestring.split('\'')[1];
-                    img.src = 'data:image/jpeg;base64,' + image;
-                    document.body.appendChild(img);
+                    var source = 'data:image/jpeg;base64,' + image;
+                    this.setState({
+                        resultPending: false,
+                        outputImage:
+                            <div className="thumb">
+                                <Container className="thumb-inner justify-content-center">
+                                    <img
+                                        src={source}
+                                        className="img"
+                                        alt={"Stylized Image"}
+                                    />
+                                </Container>
+                            </div>
+                    });
                     // console.log(res);
                 })
                 .catch(res => {
                     console.log(res);
                     alert("There was an error in your request");
+                    this.setState(({
+                        resultPending: false
+                    }));
                 });
         });
     }
@@ -223,11 +241,13 @@ class Demo extends Component {
                 </Row>
                 <Row>
                     <Container className="text-center justify-content-center" style={{marginTop: "1em"}}>
-                    {this.state.outputImage === null ?
-                        <Button onClick={this.sendNSTRequest}> NSTify it! </Button>
-                        :
-                        <p>Hello</p>
-                    }
+                        {this.state.outputImage && <h1>Output Image</h1>}
+                        {this.state.outputImage}
+                    </Container>
+                </Row>
+                <Row>
+                    <Container className="text-center justify-content-center" style={{marginTop: "1em"}}>
+                        {this.state.resultPending ? <Spinner animation="border" variant="dark" /> : <Button onClick={this.sendNSTRequest}> NSTify it! </Button>}
                     </Container>
                 </Row>
             </Container>
