@@ -58,6 +58,7 @@ def get_styled_picture(content, style, regularize=False):
     # for regularization: 
     total_variation_weight = 30
 
+    # keep track of the time for analysis purposes
     start = time.time()
 
     epochs = 10
@@ -66,6 +67,7 @@ def get_styled_picture(content, style, regularize=False):
     for n in range(epochs):
         for m in range(steps_per_epoch):
             train_step(image)
+        print(f"Training steps done: {n * steps_per_epoch}")
 
     end = time.time()
     print("Total time: {:.1f}".format(end - start))
@@ -81,7 +83,7 @@ def get_multiple_styled_picture(content, styles, regularize=False):
         styles (list(str)): paths to style images (PIL.Image)
         regularize (bool, optional): whether or not we will regularize the picture. Defaults to False
     Returns:
-    image (PIL.Image): combined image of style and content image
+        image (PIL.Image): combined image of style and content image
     """
 
     # load the content image
@@ -129,12 +131,19 @@ def get_multiple_styled_picture(content, styles, regularize=False):
         # for regularization: 
         total_variation_weight = 30
 
+        # keep track of the time for analysis purposes
+        start = time.time()
+
         epochs = 10 if len(styles) < 10 else len(styles)
         steps_per_epoch = 100
 
         for n in range(epochs // len(styles)):
             for m in range(steps_per_epoch):
                 train_step(image)
+            print(f"Training steps done: {n * steps_per_epoch}")
+
+        end = time.time()
+        print("Total time: {:.1f}".format(end - start))
 
         content_image = tf.convert_to_tensor(image)
 
@@ -159,7 +168,7 @@ def tensor_to_image(tensor):
 def load_img(img_pil):
     """Returns a tensor of the image
     Args:
-        img_pil (PIL.Image): image to turn to tensor
+        img_pil (string): path to image to turn to tensor
     Returns:
         img (tensorflow.python.framework.ops.EagerTensor): tensor
     """
@@ -198,6 +207,9 @@ def vgg_layers(layer_names):
 
 
 def gram_matrix(input_tensor):
+    """Calculates the gram matrix from the input tensor.
+    gram matrix represents the style of an image calculated from feature maps
+    """
     result = tf.linalg.einsum('bijc,bijd->bcd', input_tensor, input_tensor)
     input_shape = tf.shape(input_tensor)
     num_locations = tf.cast(input_shape[1] * input_shape[2], tf.float32)
@@ -205,6 +217,8 @@ def gram_matrix(input_tensor):
 
 
 class StyleContentModel(tf.keras.models.Model):
+    """Creates a model based on vgg 19.
+    """
     def __init__(self, style_layers, content_layers):
         super(StyleContentModel, self).__init__()
         self.vgg = vgg_layers(style_layers + content_layers)
@@ -247,6 +261,9 @@ def clip_0_1(image):
 
 def style_content_loss(outputs, style_targets, content_targets, style_weight,
                        content_weight, num_style_layers, num_content_layers):
+    """Calculates the loss with weighed sum of mean square error from outputs 
+    relative to targets 
+    """
     style_outputs = outputs['style']
     content_outputs = outputs['content']
     style_loss = tf.add_n([tf.reduce_mean((style_outputs[name] - style_targets[name]) ** 2)
