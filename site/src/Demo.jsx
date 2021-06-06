@@ -148,7 +148,7 @@ class Demo extends Component {
                                     <img
                                         src={source}
                                         className="img"
-                                        alt={"Stylized Image"}
+                                        alt={"Stylized"}
                                     />
                                 </Container>
                             </div>
@@ -168,9 +168,9 @@ class Demo extends Component {
   render() {
     return (
         <>
-            <Jumbotron style={{backgroundColor: "hsl(29, 87%, 60%)", marginTop: "2em"}} fluid>
+            <Jumbotron style={{backgroundColor: "hsl(29, 87%, 60%)", marginTop: "2em"}}>
                 <Container className="text-center">
-                    <h1 style={{fontSize: "5em", fontFamily: "'Fredoka One', cursive", color: "#ffffff"}}>Try it out!</h1>
+                    <h1 style={{fontSize: "4.5em", fontFamily: "'Fredoka One', cursive", color: "#ffffff"}}>Try it out!</h1>
                     <p style={{fontSize: "1.5em", fontFamily: "'Karla', sans-serif"}}> Wanna try NST on your own images? Now you can! Simply provide a base image and up to 4 styles to apply the Style Transfer on. </p>
                 </Container>
             </Jumbotron>

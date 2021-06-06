@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Col, Row, Button, Jumbotron, Image} from "react-bootstrap";
+import {Container, Col, Row, Jumbotron} from "react-bootstrap";
 
 
 function Examples() {

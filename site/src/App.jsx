@@ -6,11 +6,10 @@ import RouterScrollTop from "./RouterScrollTop";
 import NavigationBar from "./NavigationBar";
 import NotFound from "./NotFound";
 import Home from "./Home";
+import About from "./About";
 import Demo from "./Demo";
+import Credits from "./Credits";
 import Examples from "./Examples";
-import {Button} from "react-bootstrap";
-import {Fade} from 'react-reveal';
-import { animateScroll as scroll } from 'react-scroll'
 
 class App extends Component {
 
@@ -23,16 +22,13 @@ class App extends Component {
                     <Switch>
                         <Route exact path="/" component={Home} />
                         <Route exact path="/home" component={Home}/>
+                        <Route exact path="/about" component={About}/>
                         <Route exact path="/demo" component={Demo}/>
                         <Route exact path="/examples" component={Examples}/>
+                        <Route exact path="/credits" component={Credits}/>
                         <Route component={NotFound} />
                     </Switch>
                 </HashRouter>
-                <Fade bottom>
-                    <div className="text-center">
-                        <Button variant="outline-success" onClick={() => scroll.scrollTo(0)}> Back To Top </Button>
-                    </div>
-                </Fade>
             </>
         );
     }
