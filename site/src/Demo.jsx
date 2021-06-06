@@ -168,22 +168,18 @@ class Demo extends Component {
   render() {
     return (
         <>
-            <Jumbotron fluid>
+            <Jumbotron style={{backgroundColor: "hsl(29, 87%, 60%)", marginTop: "2em"}} fluid>
                 <Container className="text-center">
-                    <h1>Try it out!</h1>
-                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
+                    <h1 style={{fontSize: "5em", fontFamily: "'Fredoka One', cursive", color: "#ffffff"}}>Try it out!</h1>
+                    <p style={{fontSize: "1.5em", fontFamily: "'Karla', sans-serif"}}> Wanna try NST on your own images? Now you can! Simply provide a base image and up to 4 styles to apply the Style Transfer on. </p>
                 </Container>
             </Jumbotron>
             <Container style={{marginBottom: "3em"}} fluid>
                 <Row>
                     <Col>
                         <Container className="text-center">
-                            <h1>Original Image</h1>
-                            <h3>Select or Drag & Drop</h3>
+                            <h1 style={{fontFamily: "'Fredoka One', cursive", color: "#fea02f"}}>Original Image</h1>
+                            <h3 style={{fontFamily: "'Karla', sans-serif"}}>Select or Drag & Drop</h3>
                             {this.state.selectedBaseImage !== null ? null :
                             <Dropzone maxFiles={1} multiple={false} accept={'image/*'} onDropAccepted={this.onBaseDrop} onDropRejected={() => alert("Please only a single image file!")}>
                                 {({getRootProps, getInputProps}) => (
@@ -202,8 +198,8 @@ class Demo extends Component {
                     </Col>
                     <Col>
                         <Container className="text-center">
-                            <h1>Style Images</h1>
-                            <h3>Select or Drag & Drop (max 4 filters)</h3>
+                            <h1 style={{fontFamily: "'Fredoka One', cursive", color: "#fea02f"}}>Style Images</h1>
+                            <h3 style={{fontFamily: "'Karla', sans-serif"}}>Select or Drag & Drop (max 4 filters)</h3>
                             {this.state.selectedStyleImages === undefined || this.state.selectedStyleImages.length === 0 ?
                                 <Dropzone maxFiles={4} accept={'image/*'} onDropAccepted={this.onStylesDrop} onDropRejected={() => alert("Please select 4 images only!")}>
                                     {({getRootProps, getInputProps}) => (
@@ -240,14 +236,14 @@ class Demo extends Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Container className="text-center justify-content-center" style={{marginTop: "1em"}}>
-                        {this.state.outputImage && <h1>Output Image</h1>}
+                    <Container className="text-center justify-content-center" style={{marginTop: "1em", backgroundColor: "hsl(29, 87%, 60%)"}} fluid>
+                        {this.state.outputImage && <h1 style={{fontSize: "4em", fontFamily: "'Fredoka One', cursive", color: "#ffffff"}}>Output Image</h1>}
                         {this.state.outputImage}
                     </Container>
                 </Row>
                 <Row>
                     <Container className="text-center justify-content-center" style={{marginTop: "1em"}}>
-                        {this.state.resultPending ? <Spinner animation="border" variant="dark" /> : <Button onClick={this.sendNSTRequest}> NSTify it! </Button>}
+                        {this.state.resultPending ? <Spinner animation="border" variant="dark" /> : <Button variant="warning" onClick={this.sendNSTRequest}> NSTify it! </Button>}
                     </Container>
                 </Row>
             </Container>

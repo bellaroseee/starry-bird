@@ -11,8 +11,9 @@ from nst import *
 app = Flask(__name__)
 # apply CORS filter
 CORS(app)
-# run_with_ngrok(app)
 
+
+# run_with_ngrok(app)
 
 # route http posts to this method
 @app.route('/api/upload', methods=['POST'])
@@ -23,15 +24,6 @@ def upload_file():
     # it's the hackiest way possible, basically saves the picture and then we'll reflect it back to the client
     if uploaded_file.filename != '':
         uploaded_file.save(os.path.join('tmp', uploaded_file.filename))
-
-    # reflect the image back to the client
-    # img = Image.open(os.path.join('tmp', uploaded_file.filename))
-    # rawBytes = io.BytesIO()
-    # img.save(rawBytes, "JPEG")
-    # rawBytes.seek(0)
-    # img_base64 = base64.b64encode(rawBytes.read())
-    #
-    # return jsonify({'image': str(img_base64)})
 
     return "Files Received!", 200
 
@@ -86,5 +78,4 @@ if __name__ == "__main__":
     if create_tmp_if_not_exists():
         print("Created tmp folder...")
     print("Starting server")
-    # get_styled_picture(os.path.join('tmp', '48872.jpg'), os.path.join('tmp', '48872.jpg'), 0.5)
     app.run()

@@ -7,6 +7,7 @@ import NavigationBar from "./NavigationBar";
 import NotFound from "./NotFound";
 import Home from "./Home";
 import Demo from "./Demo";
+import Examples from "./Examples";
 import {Button} from "react-bootstrap";
 import {Fade} from 'react-reveal';
 import { animateScroll as scroll } from 'react-scroll'
@@ -23,6 +24,7 @@ class App extends Component {
                         <Route exact path="/" component={Home} />
                         <Route exact path="/home" component={Home}/>
                         <Route exact path="/demo" component={Demo}/>
+                        <Route exact path="/examples" component={Examples}/>
                         <Route component={NotFound} />
                     </Switch>
                 </HashRouter>
