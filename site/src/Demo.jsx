@@ -120,16 +120,19 @@ class Demo extends Component {
     // Send formData object
     axios.post("http://localhost:5000/api/upload", formData, config)
         .then(res => {
-            var img = document.createElement('img');
-            var bytestring = res.data['image']
-            var image = bytestring.split('\'')[1];
-            img.src = 'data:image/jpeg;base64,' + image;
-            document.body.appendChild(img);
-            // console.log(image)
+            // var img = document.createElement('img');
+            // var bytestring = res.data['image']
+            // var image = bytestring.split('\'')[1];
+            // img.src = 'data:image/jpeg;base64,' + image;
+            // document.body.appendChild(img);
+        })
+        .catch(res => {
+            console.log(res);
+            alert("There was an error in your request");
         });
   };
 
-    sendNSTRequest = () => {
+    sendNSTRequest = async () => {
         if (this.state.selectedBaseImage === null) {
             alert("Hey! You forgot to select a base image");
             return;
@@ -142,7 +145,32 @@ class Demo extends Component {
         for (let styles of this.state.selectedStyleImages) {
             this.uploadFile(styles);
         }
-        // send another request for finding NST image
+
+        let config = {
+            headers: {
+                "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Headers": "Content-Type,Authorization,X-Requested-With,Content-Length,Accept,Origin,",
+                "Access-Control-Allow-Credentials": "true"
+            }
+        }
+
+        axios.post("http://localhost:5000/api/nst", {
+            "base_image": this.state.selectedBaseImage.name,
+            "style_images": this.state.selectedStyleImages.map(files => files.name)
+        }, config)
+            .then(res => {
+                // var img = document.createElement('img');
+                // var bytestring = res.data['image']
+                // var image = bytestring.split('\'')[1];
+                // img.src = 'data:image/jpeg;base64,' + image;
+                // document.body.appendChild(img);
+                console.log(res);
+            })
+            .catch(res => {
+                console.log(res);
+                alert("There was an error in your request");
+            });
     }
 
   render() {

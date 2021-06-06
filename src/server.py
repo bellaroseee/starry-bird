@@ -1,20 +1,15 @@
-import base64
-import io
 import os
-import urllib.request
-import json
 
-from PIL import Image
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
 from flask_cors import CORS
 from flask_ngrok import run_with_ngrok
-from test import *
+from nst import *
 
 # Initialize the Flask application
 app = Flask(__name__)
 # apply CORS filter
 CORS(app)
-run_with_ngrok(app)
+# run_with_ngrok(app)
 
 
 # route http posts to this method
@@ -28,17 +23,40 @@ def upload_file():
         uploaded_file.save(os.path.join('tmp', uploaded_file.filename))
 
     # reflect the image back to the client
-    img = Image.open(os.path.join('tmp', uploaded_file.filename))
-    rawBytes = io.BytesIO()
-    img.save(rawBytes, "JPEG")
-    rawBytes.seek(0)
-    img_base64 = base64.b64encode(rawBytes.read())
+    # img = Image.open(os.path.join('tmp', uploaded_file.filename))
+    # rawBytes = io.BytesIO()
+    # img.save(rawBytes, "JPEG")
+    # rawBytes.seek(0)
+    # img_base64 = base64.b64encode(rawBytes.read())
+    #
+    # return jsonify({'image': str(img_base64)})
 
-    return jsonify({'image': str(img_base64)})
+    return "Files Received!"
 
-@app.route('/', methods=['GET'])
-def test_hello():
-    return "<h1>Hello World</h1>"
+
+@app.route('/api/nst', methods=['POST'])
+def perform_nst():
+    data = request.json
+    base_image = data['base_image']
+    style_images = data['style_images']
+
+    path_to_base_image = os.path.join('tmp', base_image)
+    path_to_style_images = []
+
+    if not os.path.exists(path_to_base_image):
+        return "Invalid Request", 400
+
+    for img_name in style_images:
+        path_res = os.path.join('tmp', img_name)
+        if not os.path.exists(path_res):
+            return "Invalid Request", 400
+        path_to_style_images.append(path_res)
+
+    # clean up all temporary files
+    for f in os.listdir('tmp'):
+        os.remove(os.path.join('tmp', f))
+    return "lol"
+
 
 def create_tmp_if_not_exists():
     if not os.path.exists('tmp'):
@@ -49,7 +67,7 @@ def create_tmp_if_not_exists():
 
 # start flask app
 if __name__ == "__main__":
-    if (create_tmp_if_not_exists()):
+    if create_tmp_if_not_exists():
         print("Created tmp folder...")
     print("Starting server")
     # get_styled_picture(os.path.join('tmp', '48872.jpg'), os.path.join('tmp', '48872.jpg'), 0.5)
