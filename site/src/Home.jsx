@@ -60,7 +60,7 @@ function Home() {
                                                 <h5 style={{fontSize: "1.5em", fontFamily: "'Kalam', cursive"}}> 'Good artists never die, they just fade away...'</h5>
                                                 <p style={{fontSize: "1em", fontFamily: "'Karla', sans-serif"}}> 
                                                     Neural Style Transfer (NST) is a deep learning algorithm that combines the style of an image with the content of an image.
-                                                    Think of it as re-painting an (content) image in the style of that artist, say Vincent Van Gogh
+                                                    Think of it as re-painting a (content) image in the style of that artist, say, Vincent Van Gogh.
                                                 </p>
                                                 <Link to={'./examples'}>
                                                     <Button variant="outline-dark">
@@ -81,10 +81,11 @@ function Home() {
                                 <Container>
                                     <h1 style={{fontFamily: "'Fredoka One', cursive"}}>General Workflow</h1>
                                     <p style={{fontSize: "1em", fontFamily: "'Karla', sans-serif"}}>
-                                        We approached this by utilizing the VGG-19 model to train on the base picture to produce a feasible output.
-                                        <br/>
-                                        The idea is to run the given images through the same model with shared weights such that they eventually look similar after
-                                        some number of iterations. In addition, we expanded further into this by allowing multiple style images to be applied on the same base image.
+                                        We utilized VGG-19 network layers to extract the features from the content and style image. 
+                                        <br/><br/>
+                                        For each train iteration, style content loss is calculated with gram matrix and gradient is applied to the image. 
+                                        <br/><br/>
+                                        A significant improvement we made was to expanded further by combining mulitple sytle images and then combine it with the single content image.
                                     </p>
                                     <Link to={'./about'}>
                                         <Button variant="outline-dark">
