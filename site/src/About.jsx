@@ -11,27 +11,49 @@ function About() {
                     <Tab eventKey="motivation" title="Motivation" style={{marginTop: "30px"}}>
                         <Container>
                             <h4 style={{fontFamily: "'Fredoka One', cursive"}}>Motivation</h4>
-                            <p style={{fontFamily: `'Karla', sans-serif`}}>We are trying to to draw an image, i.e. bird, dog, etc, in an art style, i.e. manga, starry night using artistic style transfer between 2 images. As we progressed, we upgraded our program so that it can combine several different art styles, and draw the image in those “combined” art style. For visual purposes, we limit the number of art styles to be 4 art images.</p>
+                            <p style={{fontFamily: `'Karla', sans-serif`}}>
+                                Since many people are doing bird classification, we fear of missing out and decided to something inspired by the prize bird doll.
+                                We decided to do Neural Style Transfer (NST) on bird and the Starry Night painting (hence the name of this project). 
+                                As we progressed, we upgraded our program so that it can combine several different art styles, and draw an image in those “combined” art style.
+                                For simplicity's sake, we limit the number of art styles to be 4 art style images.
+                            </p>
 
                             <h4 style={{fontFamily: "'Fredoka One', cursive"}}>Data</h4>
-                            <p style={{fontFamily: `'Karla', sans-serif`}}>We use any random images.</p>
+                            <p style={{fontFamily: `'Karla', sans-serif`}}>
+                                Since NST does not require training on data, 
+                                we are able to use any random images for the content and style images. 
+                            </p>
+
+                            <h4 style={{fontFamily: "'Fredoka One', cursive"}}>Setup</h4>
+                            <p style={{fontFamily: `'Karla', sans-serif`}}>
+                            The basic framework we used is <code>Tensorflow</code> and <code>VGG-19</code> Network from <code>keras</code>
+                            For the demo, we used <code>ReactJS</code> for the front-end and <code>Flask</code> for the server. 
+                            </p>
+
+                            <h4 style={{fontFamily: "'Fredoka One', cursive"}}>Method</h4>
+                            <p style={{fontFamily: `'Karla', sans-serif`}}>
+                                Our methodology follows closely the <a href="https://arxiv.org/abs/1508.06576">Neural Algorithm of Artistic Sytle</a> and 
+                                this <a href="https://www.tensorflow.org/tutorials/generative/style_transfer">Tensoflow tutorial</a> inspired by the said paper.
+                            </p>
                             <p style={{fontFamily: `'Karla', sans-serif`}}>The inputs requirements are:</p>
                             <ul style={{fontFamily: `'Karla', sans-serif`}}>
                                 <li>1 image for the content image, which is what we will draw. i.e. a picture of bird, doc, etc. </li>
                                 <li>At least 1 (max 4) images for the art image(s), which will be our art style. i.e. a painting like starry night, a manga picture, a cartoon, etc.</li>
                             </ul>
-
-                            <h4 style={{fontFamily: "'Fredoka One', cursive"}}>Setup</h4>
-                            <p style={{fontFamily: `'Karla', sans-serif`}}>We mainly use tensorflow for our model. We also use some additional libraries like numpy, time, functools, PIL, IPython, and os.</p>
-
-                            <h4 style={{fontFamily: "'Fredoka One', cursive"}}>Method</h4>
-                            <p style={{fontFamily: `'Karla', sans-serif`}}>We use Neural Style Transfer (NST) algorithm for this project.</p>
+                            <p style={{fontFamily: `'Karla', sans-serif`}}>The steps are:</p>
                             <ol style={{fontFamily: `'Karla', sans-serif`}}>
-                                <li>First, we load the images.</li>
-                                <li>Then, to get the content and style of the image, we extract the intermediate layers of the model. The lower layers consist of more general features like edges and textures. The higher layers consist of more detailed features, like eyes, nose, etc. We use a pretrained image classification network VGG19 for our model.</li>
-                                <li>The content of the image is represented by the values of the intermediate feature maps. On the other hand, the style image of the image can be calculated by the means and correlations across different feature maps. We use gram matrix to calculate this.</li>
-                                <li>Then we get the total loss using regularization for our train step function.</li>
-                                <li>Finally, we run an optimization function.</li>
+                                <li>Loading both the style and content images form rgb jpg to an <code>EagerTensor</code> with <code>float</code> between 0 and 1 representing pixel values</li>
+                                <li>Extracting the content and style layers of the image, using an extractor intialized with <code>VGG-19</code> layers.
+                                The specific content and style layer names we want to extracts are defined earlier. The lower layers captures more accurate pixel informations like textures and edges. As such, it captures the content better. In contrast,
+                                the higher layers captures the high-level content like the general objects in the image.</li>
+                                <li>The content of the image is represented by the values of the intermediate feature maps. 
+                                While to obtain the style of an image, we need to take a step further by calculating the means and correlations across different feature maps.
+                                We use gram matrix to calculate this.</li>
+                                <li>For each step in combining the images, loss is calculated by combining the style loss and content loss. Each of the loss is 
+                                calculated between the output (feature map to optimize) and the target (feature map in the combined image).
+                                The total weight is then regularized before applied by to the image with the <code>optimizer</code>
+                                </li>
+                                <li>Training or optimization is done after certain number of epoch is done. Then, the image is coverted back to <code>PIL.Image</code> from <code>tensor</code></li>
                             </ol>
                         </Container>
                     </Tab>
