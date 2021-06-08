@@ -58,9 +58,9 @@ function Home() {
                                             }}>
                                                 <h1 className="text-left" style={{fontFamily: "'Fredoka One', cursive"}}>What's Neural Style Transfer?</h1>
                                                 <h5 style={{fontSize: "1.5em", fontFamily: "'Kalam', cursive"}}> 'Good artists never die, they just fade away...'</h5>
-                                                <p style={{fontSize: "1em", fontFamily: "'Karla', sans-serif"}}> Neural Style Transfer (NST) is the process of blending a content image (a.k.a base image) with a style image
-                                                    (for example that of a famous artist) and applying that particular style onto the image.
-                                                    Think of it as re-painting that base image in the style of that artist, say Vincent Van Gogh
+                                                <p style={{fontSize: "1em", fontFamily: "'Karla', sans-serif"}}> 
+                                                    Neural Style Transfer (NST) is a deep learning algorithm that combines the style of an image with the content of an image.
+                                                    Think of it as re-painting an (content) image in the style of that artist, say Vincent Van Gogh
                                                 </p>
                                                 <Link to={'./examples'}>
                                                     <Button variant="outline-dark">
