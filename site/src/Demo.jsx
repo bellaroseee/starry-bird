@@ -137,7 +137,7 @@ class Demo extends Component {
         });
 
         let url = this.state.nonLocalServer === "" ? "http://localhost:5000" : this.state.nonLocalServer;
-        url = ("https://").append(url.replace(/(^\w+:|^)\/\//, ''));
+        url = "https://" + (url.replace(/(^\w+:|^)\/\//, ''));
 
         this.uploadFile(this.state.selectedBaseImage, url);
         for (let styles of this.state.selectedStyleImages) {
