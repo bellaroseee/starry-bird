@@ -32,19 +32,19 @@ function About() {
 
                             <h4 style={{fontFamily: "'Fredoka One', cursive"}}>Method</h4>
                             <p style={{fontFamily: `'Karla', sans-serif`}}>
-                                Our methodology follows closely the <a href="https://arxiv.org/abs/1508.06576">Neural Algorithm of Artistic Sytle</a> and 
-                                this <a href="https://www.tensorflow.org/tutorials/generative/style_transfer">Tensoflow tutorial</a> inspired by the said paper.
+                                Our methodology follows closely the <a href="https://arxiv.org/abs/1508.06576">Neural Algorithm of Artistic Style</a> and
+                                this <a href="https://www.tensorflow.org/tutorials/generative/style_transfer">TensorFlow tutorial</a> inspired by the said paper.
                             </p>
                             <p style={{fontFamily: `'Karla', sans-serif`}}>The inputs requirements are:</p>
                             <ul style={{fontFamily: `'Karla', sans-serif`}}>
-                                <li>1 image for the content image, which is what we will draw. i.e. a picture of bird, doc, etc. </li>
+                                <li>1 image for the content image, which is what we will draw. i.e. a picture of bird, dog, etc. </li>
                                 <li>At least 1 (max 4) images for the art image(s), which will be our art style. i.e. a painting like starry night, a manga picture, a cartoon, etc.</li>
                             </ul>
                             <p style={{fontFamily: `'Karla', sans-serif`}}>The steps are:</p>
                             <ol style={{fontFamily: `'Karla', sans-serif`}}>
                                 <li>Loading both the style and content images form rgb jpg to an <code>EagerTensor</code> with <code>float</code> between 0 and 1 representing pixel values</li>
-                                <li>Extracting the content and style layers of the image, using an extractor intialized with <code>VGG-19</code> layers.
-                                The specific content and style layer names we want to extracts are defined earlier. The lower layers captures more accurate pixel informations like textures and edges. As such, it captures the content better. In contrast,
+                                <li>Extracting the content and style layers of the image, using an extractor initialized with <code>VGG-19</code> layers.
+                                The specific content and style layer names we want to extracts are defined earlier. The lower layers captures more accurate pixel information like textures and edges. As such, it captures the content better. In contrast,
                                 the higher layers captures the high-level content like the general objects in the image.</li>
                                 <li>The content of the image is represented by the values of the intermediate feature maps. 
                                 While to obtain the style of an image, we need to take a step further by calculating the means and correlations across different feature maps.
@@ -53,9 +53,9 @@ function About() {
                                 calculated between the output (feature map to optimize) and the target (feature map in the combined image).
                                 The total weight is then regularized before applied by to the image with the <code>optimizer</code>
                                 </li>
-                                <li>Training or optimization is done after certain number of epoch is done. Then, the image is coverted back to <code>PIL.Image</code> from <code>tensor</code></li>
+                                <li>Training or optimization is done after certain number of epoch is done. Then, the image is converted back to <code>PIL.Image</code> from <code>tensor</code></li>
                             </ol>
-                            <h4 style={{fontFamily: "'Fredoka One', cursive"}}>Additional Functionaly</h4>
+                            <h4 style={{fontFamily: "'Fredoka One', cursive"}}>Additional Functional</h4>
                             <p style={{fontFamily: `'Karla', sans-serif`}}>
                                 Mulitiple style images can be combined to be applied to the content image.
                             </p>
