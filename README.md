@@ -1,17 +1,20 @@
 # Starry Bird
-### Background
+## Background
 Starry Bird is the final project for the CSE 455: Computer Vision course taught by Joe Redmon in the University of Washington
 
-### Prerequisites
+## Prerequisites
 To run the demo of this program you will need to have `Tensorflow 2` installed, with Python 3.
+<br/>
 If you plan on running the server locally, you will also want to have GPU support since it will take long without.
+<br/>
+You will also need to have NodeJS installed for the website to work if you plan on running it locally via `npm`.
 
-### Website
+## Website
 To view the website, either visit the [link directly here](https://bellaroseee.github.io/vision-project/) or by
 first going into the `site` directory (`cd site`) and then running the Node Package Manager (`npm install` and then `npm start`). Then visit
 the URL `localhost:3000`
 
-### Demo
+## Demo
 The website also has a demo functionality to see the NST in action. There are 2 ways of making the demo work, Locally or through a Server Proxy.
 To run the demo, the server has to be set up first. See the section below on how to do that. 
 Running the demo is simple, click on the Demo tab on the navigation bar on the website. 
@@ -20,7 +23,7 @@ If you want to change the image, use the clear image button before selecting the
 Then when you're done, click on the NSTify button to perform the Neural Style Transfer. It might take up to a minute for the results to be processed if it's run
 on a GPU system, and up to 15 minutes if run on modern CPU-only systems.
 
-### Server setup
+## Server setup
 There are 2 ways of starting the server: Locally or through a Server Proxy.
 
 #### Running Locally
