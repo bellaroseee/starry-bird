@@ -34,13 +34,13 @@ def get_styled_picture(content, style, regularize=False):
     style_image = load_img(style)
 
     # define the layers to extract features from
-    content_layers = ['block5_conv2']
+    content_layers = ['block5_conv3']
 
-    style_layers = ['block1_conv1',
-                    'block2_conv1',
-                    'block3_conv1',
-                    'block4_conv1',
-                    'block5_conv1']
+    style_layers = ['block1_conv2',
+                    'block2_conv2',
+                    'block3_conv2',
+                    'block4_conv2',
+                    'block5_conv2']
 
     num_style_layers = len(style_layers)
     num_content_layers = len(content_layers)
@@ -89,13 +89,13 @@ def get_multiple_styled_picture(content, styles, regularize=False):
     # load the content image
     content_image = load_img(content)
 
-    content_layers = ['block5_conv2']
+    content_layers = ['block5_conv3']
 
-    style_layers = ['block1_conv1',
-                    'block2_conv1',
-                    'block3_conv1',
-                    'block4_conv1',
-                    'block5_conv1']
+    style_layers = ['block1_conv2',
+                    'block2_conv2',
+                    'block3_conv2',
+                    'block4_conv2',
+                    'block5_conv2']
 
     for style in styles:
         @tf.function()
