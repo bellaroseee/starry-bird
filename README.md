@@ -1,4 +1,4 @@
-## Starry Bird
+# Starry Bird
 ### Background
 Starry Bird is the final project for the CSE 455: Computer Vision course taught by Joe Redmon in the University of Washington
 
