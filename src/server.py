@@ -10,7 +10,7 @@ from nst import *
 app = Flask(__name__)
 # apply CORS filter
 CORS(app)
-# run_with_ngrok(app)
+run_with_ngrok(app)
 
 # route http posts to this method
 @app.route('/api/upload', methods=['POST'])
