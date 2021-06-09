@@ -1,6 +1,7 @@
 import React from 'react';
-import {Row, Container, Tabs, Tab} from "react-bootstrap";
+import {Row, Container, Tabs, Tab, Jumbotron} from "react-bootstrap";
 import "./About.css"
+import recording from './video/455video.mp4';
 
 function About() {
 
@@ -61,9 +62,14 @@ function About() {
                             </p>
                         </Container>
                     </Tab>
-
-                    <Tab eventKey="video" title="Video" >
-
+                    <Tab eventKey="video" title="Video">
+                        <Container className="text-center justify-content-center">
+                            <Jumbotron style={{backgroundColor: "hsl(29, 87%, 60%)", marginTop: "2em", borderRadius: "5em"}}>
+                                <video width="100%" controls>
+                                    <source src={recording} type="video/mp4" />
+                                </video>
+                            </Jumbotron>
+                        </Container>
                     </Tab>
                 </Tabs>
             </Container>
