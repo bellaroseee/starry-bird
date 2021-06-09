@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/vision-project/static/css/main.c72de471.chunk.css",
-    "main.js": "/vision-project/static/js/main.48348773.chunk.js",
-    "main.js.map": "/vision-project/static/js/main.48348773.chunk.js.map",
+    "main.js": "/vision-project/static/js/main.dd4139f6.chunk.js",
+    "main.js.map": "/vision-project/static/js/main.dd4139f6.chunk.js.map",
     "runtime-main.js": "/vision-project/static/js/runtime-main.a2bc4c6b.js",
     "runtime-main.js.map": "/vision-project/static/js/runtime-main.a2bc4c6b.js.map",
     "static/css/2.4c97ca4f.chunk.css": "/vision-project/static/css/2.4c97ca4f.chunk.css",
@@ -11,13 +11,14 @@
     "index.html": "/vision-project/index.html",
     "static/css/2.4c97ca4f.chunk.css.map": "/vision-project/static/css/2.4c97ca4f.chunk.css.map",
     "static/css/main.c72de471.chunk.css.map": "/vision-project/static/css/main.c72de471.chunk.css.map",
-    "static/js/2.85700e3f.chunk.js.LICENSE.txt": "/vision-project/static/js/2.85700e3f.chunk.js.LICENSE.txt"
+    "static/js/2.85700e3f.chunk.js.LICENSE.txt": "/vision-project/static/js/2.85700e3f.chunk.js.LICENSE.txt",
+    "static/media/455video.056a9bba.mp4": "/vision-project/static/media/455video.056a9bba.mp4"
   },
   "entrypoints": [
     "static/js/runtime-main.a2bc4c6b.js",
     "static/css/2.4c97ca4f.chunk.css",
     "static/js/2.85700e3f.chunk.js",
     "static/css/main.c72de471.chunk.css",
-    "static/js/main.48348773.chunk.js"
+    "static/js/main.dd4139f6.chunk.js"
   ]
 }
