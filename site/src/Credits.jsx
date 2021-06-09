@@ -92,6 +92,16 @@ function Credits() {
                                         NST Paper
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="https://flask.palletsprojects.com/en/2.0.x/">
+                                        Flask
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://ngrok.com/">
+                                        Ngrok
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                         <hr/>

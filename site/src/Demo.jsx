@@ -93,11 +93,9 @@ class Demo extends Component {
         }
 
         // Details of the uploaded file
-        console.log(file);
 
         // Request made to the backend api
         // Send formData object
-        console.log(url.concat("/api/nst"));
         this.currentPromises.push(axios.post(url.concat("/api/upload"), formData, config)
             .then(res => {
                 console.log(res);
@@ -138,7 +136,8 @@ class Demo extends Component {
             resultPending: true,
         });
 
-        const url = this.state.nonLocalServer === "" ? "http://localhost:5000" : this.state.nonLocalServer;
+        let url = this.state.nonLocalServer === "" ? "http://localhost:5000" : this.state.nonLocalServer;
+        url = ("https://").append(url.replace(/(^\w+:|^)\/\//, ''));
 
         this.uploadFile(this.state.selectedBaseImage, url);
         for (let styles of this.state.selectedStyleImages) {
@@ -177,10 +176,8 @@ class Demo extends Component {
                                 </Container>
                             </div>
                     });
-                    // console.log(res);
                 })
                 .catch(res => {
-                    console.log(res);
                     alert("There was an error in your request");
                     this.setState(({
                         resultPending: false
@@ -191,7 +188,6 @@ class Demo extends Component {
 
     handleURLChange = (event) => {
         this.setState({nonLocalServer: event.target.value});
-        console.log(event.target.value);
     }
 
   render() {
