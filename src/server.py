@@ -1,8 +1,7 @@
 import base64
 import io
-import os
 
-from flask import Flask, request, jsonify, Response
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 from flask_ngrok import run_with_ngrok
 from nst import *
@@ -11,8 +10,6 @@ from nst import *
 app = Flask(__name__)
 # apply CORS filter
 CORS(app)
-
-
 # run_with_ngrok(app)
 
 # route http posts to this method

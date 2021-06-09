@@ -9,7 +9,8 @@ class Demo extends Component {
         selectedBaseImage: null,
         selectedStyleImages: [],
         outputImage: null,
-        resultPending: false
+        resultPending: false,
+        nonLocalServer: ""
     };
 
     stylesThumb = null;
@@ -71,7 +72,7 @@ class Demo extends Component {
     }
 
     // On file upload (click the upload button)
-    uploadFile = (file) => {
+    uploadFile = (file, url) => {
         // Create an object of formData
         const formData = new FormData();
 
@@ -96,15 +97,26 @@ class Demo extends Component {
 
         // Request made to the backend api
         // Send formData object
-        this.currentPromises.push(axios.post("http://localhost:5000/api/upload", formData, config)
+        console.log(url.concat("/api/nst"));
+        this.currentPromises.push(axios.post(url.concat("/api/upload"), formData, config)
             .then(res => {
                 console.log(res);
             })
             .catch(res => {
                 console.log(res);
-                alert("There was an error in your request");
+                alert("There was an error in your request. Check the README in the repo for help.");
             }));
         };
+
+    isURL = (str) => {
+        const pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
+            '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|' + // domain name
+            '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+            '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+            '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+            '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
+        return pattern.test(str);
+    }
 
     sendNSTRequest = async () => {
         if (this.state.selectedBaseImage === null) {
@@ -115,10 +127,21 @@ class Demo extends Component {
             alert("The style images are empty. You gotta put something there!");
             return;
         }
-        this.setState({resultPending: true});
-        this.uploadFile(this.state.selectedBaseImage);
+        if (this.state.nonLocalServer !== ""
+            && this.isURL(this.state.nonLocalServer)
+            && !this.state.nonLocalServer.endsWith(".ngrok.io")) {
+            alert("ngrok link is not valid!");
+        }
+
+        this.setState({
+            resultPending: true,
+        });
+
+        const url = this.state.nonLocalServer === "" ? "http://localhost:5000" : this.state.nonLocalServer;
+
+        this.uploadFile(this.state.selectedBaseImage, url);
         for (let styles of this.state.selectedStyleImages) {
-            this.uploadFile(styles);
+            this.uploadFile(styles, url);
         }
 
         Promise.all(this.currentPromises).then( () => {
@@ -132,7 +155,7 @@ class Demo extends Component {
                 }
             };
 
-            axios.post("http://localhost:5000/api/nst", {
+            axios.post(url.concat("/api/nst"), {
                 "base_image": this.state.selectedBaseImage.name,
                 "style_images": this.state.selectedStyleImages.map(files => files.name)
             }, config)
@@ -165,6 +188,11 @@ class Demo extends Component {
         });
     }
 
+    handleURLChange = (event) => {
+        this.setState({nonLocalServer: event.target.value});
+        console.log(event.target.value);
+    }
+
   render() {
     return (
         <>
@@ -172,6 +200,8 @@ class Demo extends Component {
                 <Container className="text-center">
                     <h1 style={{fontSize: "4.5em", fontFamily: "'Fredoka One', cursive", color: "#ffffff"}}>Try it out!</h1>
                     <p style={{fontSize: "1.5em", fontFamily: "'Karla', sans-serif"}}> Wanna try NST on your own images? Now you can! Simply provide a base image and up to 4 styles to apply the Style Transfer on. </p>
+                    <p style={{fontSize: "1em", fontFamily: "'Karla', sans-serif"}}>Not using localhost? Enter the ngrok URL below. Please ensure it's properly formatted before NSTifying it.</p>
+                    <input type="text" onChange={this.handleURLChange} value={this.state.nonLocalServer}/>
                 </Container>
             </Jumbotron>
             <Container style={{marginBottom: "3em"}} fluid>
