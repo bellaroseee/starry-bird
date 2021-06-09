@@ -131,6 +131,7 @@ class Demo extends Component {
             && this.isURL(this.state.nonLocalServer)
             && !this.state.nonLocalServer.endsWith(".ngrok.io")) {
             alert("ngrok link is not valid!");
+            return;
         }
 
         this.setState({
