@@ -6,8 +6,9 @@ function Credits() {
     return (
         <Container className="justify-content-center" style={{marginTop: "3em"}}>
             <div className="text-center">
-                <h2> Team & Credits </h2>
+                <h1 style={{fontFamily: "'Fredoka One', cursive"}}> Team & Credits </h1>
                 <br/>
+                <h3 style={{fontFamily: `'Karla', sans-serif`}}> <a href="https://github.com/bellaroseee/vision-project">Code</a> </h3>
             </div>
             <Col lg={10} style={{fontFamily: `'Karla', sans-serif`}}>
                 <Row>

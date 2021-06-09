@@ -56,7 +56,7 @@ function About() {
                                 </li>
                                 <li>Training or optimization is done after certain number of epoch is done. Then, the image is converted back to <code>PIL.Image</code> from <code>tensor</code></li>
                             </ol>
-                            <h4 style={{fontFamily: "'Fredoka One', cursive"}}>Additional Functional</h4>
+                            <h4 style={{fontFamily: "'Fredoka One', cursive"}}>Additional Functionality</h4>
                             <p style={{fontFamily: `'Karla', sans-serif`}}>
                                 Mulitiple style images can be combined to be applied to the content image.
                             </p>
