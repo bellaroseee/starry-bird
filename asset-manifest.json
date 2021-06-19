@@ -1,24 +1,36 @@
 {
   "files": {
-    "main.css": "/vision-project/static/css/main.c72de471.chunk.css",
-    "main.js": "/vision-project/static/js/main.d69a8bd0.chunk.js",
-    "main.js.map": "/vision-project/static/js/main.d69a8bd0.chunk.js.map",
-    "runtime-main.js": "/vision-project/static/js/runtime-main.a2bc4c6b.js",
-    "runtime-main.js.map": "/vision-project/static/js/runtime-main.a2bc4c6b.js.map",
-    "static/css/2.4c97ca4f.chunk.css": "/vision-project/static/css/2.4c97ca4f.chunk.css",
-    "static/js/2.85700e3f.chunk.js": "/vision-project/static/js/2.85700e3f.chunk.js",
-    "static/js/2.85700e3f.chunk.js.map": "/vision-project/static/js/2.85700e3f.chunk.js.map",
-    "index.html": "/vision-project/index.html",
-    "static/css/2.4c97ca4f.chunk.css.map": "/vision-project/static/css/2.4c97ca4f.chunk.css.map",
-    "static/css/main.c72de471.chunk.css.map": "/vision-project/static/css/main.c72de471.chunk.css.map",
-    "static/js/2.85700e3f.chunk.js.LICENSE.txt": "/vision-project/static/js/2.85700e3f.chunk.js.LICENSE.txt",
-    "static/media/455video.056a9bba.mp4": "/vision-project/static/media/455video.056a9bba.mp4"
+    "main.css": "/starry-bird/static/css/main.b495b3c8.chunk.css",
+    "main.js": "/starry-bird/static/js/main.b2ebdb6d.chunk.js",
+    "main.js.map": "/starry-bird/static/js/main.b2ebdb6d.chunk.js.map",
+    "runtime-main.js": "/starry-bird/static/js/runtime-main.2efb0163.js",
+    "runtime-main.js.map": "/starry-bird/static/js/runtime-main.2efb0163.js.map",
+    "static/css/2.4c97ca4f.chunk.css": "/starry-bird/static/css/2.4c97ca4f.chunk.css",
+    "static/js/2.85700e3f.chunk.js": "/starry-bird/static/js/2.85700e3f.chunk.js",
+    "static/js/2.85700e3f.chunk.js.map": "/starry-bird/static/js/2.85700e3f.chunk.js.map",
+    "index.html": "/starry-bird/index.html",
+    "static/css/2.4c97ca4f.chunk.css.map": "/starry-bird/static/css/2.4c97ca4f.chunk.css.map",
+    "static/css/main.b495b3c8.chunk.css.map": "/starry-bird/static/css/main.b495b3c8.chunk.css.map",
+    "static/js/2.85700e3f.chunk.js.LICENSE.txt": "/starry-bird/static/js/2.85700e3f.chunk.js.LICENSE.txt",
+    "static/media/455video.056a9bba.mp4": "/starry-bird/static/media/455video.056a9bba.mp4",
+    "static/media/abstract.0ebd852c.jpg": "/starry-bird/static/media/abstract.0ebd852c.jpg",
+    "static/media/bird.8fc289ef.png": "/starry-bird/static/media/bird.8fc289ef.png",
+    "static/media/crystal_debris.7e75334f.jpg": "/starry-bird/static/media/crystal_debris.7e75334f.jpg",
+    "static/media/dubs.c590ec91.jpg": "/starry-bird/static/media/dubs.c590ec91.jpg",
+    "static/media/dubs_abstract.ec913eeb.jpg": "/starry-bird/static/media/dubs_abstract.ec913eeb.jpg",
+    "static/media/labracrystal.8c66a7d5.jpg": "/starry-bird/static/media/labracrystal.8c66a7d5.jpg",
+    "static/media/labrador_retriever.1444f547.jpg": "/starry-bird/static/media/labrador_retriever.1444f547.jpg",
+    "static/media/robin.be502623.png": "/starry-bird/static/media/robin.be502623.png",
+    "static/media/starry_night.9dd219ea.jpg": "/starry-bird/static/media/starry_night.9dd219ea.jpg",
+    "static/media/starrybird.f0469307.jpg": "/starry-bird/static/media/starrybird.f0469307.jpg",
+    "static/media/vgg19.9eb55b9e.png": "/starry-bird/static/media/vgg19.9eb55b9e.png",
+    "static/media/wheatfield.953ae0a9.jpg": "/starry-bird/static/media/wheatfield.953ae0a9.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.a2bc4c6b.js",
+    "static/js/runtime-main.2efb0163.js",
     "static/css/2.4c97ca4f.chunk.css",
     "static/js/2.85700e3f.chunk.js",
-    "static/css/main.c72de471.chunk.css",
-    "static/js/main.d69a8bd0.chunk.js"
+    "static/css/main.b495b3c8.chunk.css",
+    "static/js/main.b2ebdb6d.chunk.js"
   ]
 }
