@@ -1,8 +1,12 @@
 import React from 'react';
 import {Container, Col, Row, Button, Image} from "react-bootstrap";
 import {Fade} from 'react-reveal';
-import { Link as ScrollLink, Element } from 'react-scroll'
-import {Link} from "react-router-dom";
+import { Link as ScrollLink, Element } from 'react-scroll';
+import { Link } from "react-router-dom";
+import birdIcon from "./assets/icons/bird.png";
+import nstIntroImg from "./assets/images/starry_night.jpg";
+import vgg19 from "./assets/images/vgg19.png";
+import demoImg from "./assets/images/wheatfield.jpg";
 
 function Home() {
 
@@ -12,7 +16,7 @@ function Home() {
                 <Col className="text-center">
                     <h1 style={{fontSize: "4em", fontFamily: "'Fredoka One', cursive", color: "#de6600"}}>
                         Starry Bird &nbsp;
-                        <img src="assets/icons/bird.png"
+                        <img src={birdIcon}
                              onClick={() => window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", '_blank')}
                              width="10%"
                              height="10%"
@@ -44,7 +48,7 @@ function Home() {
                     <Element name="nst">
                         <Row>
                             <Container style={{
-                                backgroundImage: `url(assets/images/starry_night.jpg)`,
+                                backgroundImage: `url(${nstIntroImg})`,
                                 backgroundAttachment: "fixed",
                                 backgroundPosition: "center",
                                 backgroundRepeat: "no-repeat",
@@ -95,7 +99,7 @@ function Home() {
                                 </Container>
                             </Col>
                             <Col style={{paddingTop: "5em"}}>
-                                <Image src="assets/images/vgg19.png" fluid/>
+                                <Image src={vgg19} fluid/>
                                 <p style={{fontSize: "1.5vh", fontFamily: "'Karla', sans-serif"}} className="text-center">
                                     (Fig 1.) The general workflow and pipeline for applying the Neural Style Transfer using the VGG-19 CNN.
                                     <br/>
@@ -109,7 +113,7 @@ function Home() {
 
                     <Row>
                         <Container style={{
-                            backgroundImage: `url(assets/images/wheatfield.jpg)`,
+                            backgroundImage: `url(${demoImg})`,
                             backgroundAttachment: "fixed",
                             backgroundPosition: "center",
                             backgroundRepeat: "no-repeat",

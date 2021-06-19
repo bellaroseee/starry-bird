@@ -1,6 +1,14 @@
 import React from 'react';
 import {Container, Col, Row, Jumbotron} from "react-bootstrap";
-
+import robin from "./assets/examples/robin.png";
+import starryNight from "./assets/examples/starry_night.jpg";
+import starryBird from "./assets/examples/starrybird.jpg";
+import labrador from "./assets/examples/labrador_retriever.jpg";
+import crystalDebris from "./assets/examples/crystal_debris.jpg";
+import labraCrystal from "./assets/examples/labracrystal.jpg";
+import dubs from "./assets/examples/dubs.jpg";
+import abstract from "./assets/examples/abstract.jpg";
+import dubsAbstract from "./assets/examples/dubs_abstract.jpg";
 
 function Examples() {
 
@@ -19,7 +27,7 @@ function Examples() {
                         <div className="thumb">
                             <div className="thumb-inner justify-content-center">
                                 <img
-                                    src="assets/examples/robin.png"
+                                    src={robin}
                                     className="img"
                                     alt={"Robin"}
                                 />
@@ -31,7 +39,7 @@ function Examples() {
                         <div className="thumb">
                             <div className="thumb-inner justify-content-center">
                                 <img
-                                    src="assets/examples/starry_night.jpg"
+                                    src={starryNight}
                                     className="img"
                                     alt={"Robin"}
                                 />
@@ -43,7 +51,7 @@ function Examples() {
                         <div className="thumb">
                             <div className="thumb-inner justify-content-center">
                                 <img
-                                    src="assets/examples/starrybird.jpg"
+                                    src={starryBird}
                                     className="img"
                                     alt={"Starry Night"}
                                 />
@@ -56,7 +64,7 @@ function Examples() {
                         <div className="thumb">
                             <div className="thumb-inner justify-content-center">
                                 <img
-                                    src="assets/examples/labrador_retriever.jpg"
+                                    src={labrador}
                                     className="img"
                                     alt={"Labrador"}
                                 />
@@ -67,7 +75,7 @@ function Examples() {
                         <div className="thumb">
                             <div className="thumb-inner justify-content-center">
                                 <img
-                                    src="assets/examples/crystal_debris.jpg"
+                                    src={crystalDebris}
                                     className="img"
                                     alt={"Crystal"}
                                 />
@@ -78,7 +86,7 @@ function Examples() {
                         <div className="thumb">
                             <div className="thumb-inner justify-content-center">
                                 <img
-                                    src="assets/examples/labracrystal.jpg"
+                                    src={labraCrystal}
                                     className="img"
                                     alt={"Labracrystal"}
                                 />
@@ -91,7 +99,7 @@ function Examples() {
                         <div className="thumb">
                             <div className="thumb-inner justify-content-center">
                                 <img
-                                    src="assets/examples/dubs.jpg"
+                                    src={dubs}
                                     className="img"
                                     alt={"Dubs"}
                                 />
@@ -102,7 +110,7 @@ function Examples() {
                         <div className="thumb">
                             <div className="thumb-inner justify-content-center">
                                 <img
-                                    src="assets/examples/abstract.jpg"
+                                    src={abstract}
                                     className="img"
                                     alt={"Abstract"}
                                 />
@@ -113,7 +121,7 @@ function Examples() {
                         <div className="thumb">
                             <div className="thumb-inner justify-content-center">
                                 <img
-                                    src="assets/examples/dubs_abstract.jpg"
+                                    src={dubsAbstract}
                                     className="img"
                                     alt={"DubsAbstract"}
                                 />
