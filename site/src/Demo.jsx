@@ -198,6 +198,11 @@ class Demo extends Component {
                     <h1 style={{fontSize: "4.5em", fontFamily: "'Fredoka One', cursive", color: "#ffffff"}}>Try it out!</h1>
                     <p style={{fontSize: "1.5em", fontFamily: "'Karla', sans-serif"}}> Wanna try NST on your own images? Now you can! Simply provide a base image and up to 4 styles to apply the Style Transfer on. </p>
                     <p style={{fontSize: "1em", fontFamily: "'Karla', sans-serif"}}>Not using localhost? Enter the ngrok URL below. Please ensure it's properly formatted before NSTifying it.</p>
+                    <p>
+                    <Button variant="light" as="a" type="button" href="https://colab.research.google.com/github/bellaroseee/starry-bird/blob/master/gpuServerProxy.ipynb">
+                        Get your ngrok url
+                    </Button>
+                    </p>
                     <input type="text" onChange={this.handleURLChange} value={this.state.nonLocalServer}/>
                 </Container>
             </Jumbotron>
