@@ -1,8 +1,15 @@
 import React from 'react';
 import {Col, Container, Row} from "react-bootstrap";
 import { SocialIcon } from 'react-social-icons';
+import { ApolloProvider } from '@apollo/react-hooks';
+import { ApolloClient, gql } from 'apollo-boost';
 
 function Credits() {
+    const clientParam = {uri: '/graphql'};
+    const client = new ApolloClient(clientParam);
+
+    const query = gql`{}`;
+
     return (
         <Container className="justify-content-center" style={{marginTop: "3em"}}>
             <div className="text-center">
@@ -10,6 +17,9 @@ function Credits() {
                 <br/>
                 <h3 style={{fontFamily: `'Karla', sans-serif`}}> <a href="https://github.com/bellaroseee/vision-project">Code</a> </h3>
             </div>
+            <ApolloProvider client={client}>
+                TEST
+            </ApolloProvider>
             <Col lg={10} style={{fontFamily: `'Karla', sans-serif`}}>
                 <Row>
                     <Col sm={{span: 5, offset: 3}}>
@@ -35,7 +45,6 @@ function Credits() {
                         <hr/>
                         <div id="resources">
                             <h3><u>Resources</u></h3>
-                            <br/>
                             <ul style={{fontSize: "1.25em"}}>
                                 <li>
                                     <a href="https://colab.research.google.com/" target="_blank" rel="noreferrer">
@@ -58,7 +67,7 @@ function Credits() {
                     <Col>
                         <div id="frameworks">
                             <h3><u>Frameworks</u></h3>
-                            <h4>Front-End</h4>
+                            <h4 style={{fontFamily: `'Karla', sans-serif`}}>Front-End</h4>
                             <ul>
                                 <li>
                                     <a href="https://react-bootstrap.github.io/">
@@ -81,7 +90,7 @@ function Credits() {
                                     </a>
                                 </li>
                             </ul>
-                            <h4>Back-End</h4>
+                            <h4 style={{fontFamily: `'Karla', sans-serif`}}>Back-End</h4>
                             <ul>
                                 <li>
                                     <a href="https://arxiv.org/abs/1409.1556">
