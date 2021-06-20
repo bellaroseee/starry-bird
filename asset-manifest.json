@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/starry-bird/static/css/main.b495b3c8.chunk.css",
-    "main.js": "/starry-bird/static/js/main.b2ebdb6d.chunk.js",
-    "main.js.map": "/starry-bird/static/js/main.b2ebdb6d.chunk.js.map",
+    "main.js": "/starry-bird/static/js/main.cba4dd00.chunk.js",
+    "main.js.map": "/starry-bird/static/js/main.cba4dd00.chunk.js.map",
     "runtime-main.js": "/starry-bird/static/js/runtime-main.2efb0163.js",
     "runtime-main.js.map": "/starry-bird/static/js/runtime-main.2efb0163.js.map",
     "static/css/2.4c97ca4f.chunk.css": "/starry-bird/static/css/2.4c97ca4f.chunk.css",
@@ -31,6 +31,6 @@
     "static/css/2.4c97ca4f.chunk.css",
     "static/js/2.85700e3f.chunk.js",
     "static/css/main.b495b3c8.chunk.css",
-    "static/js/main.b2ebdb6d.chunk.js"
+    "static/js/main.cba4dd00.chunk.js"
   ]
 }
