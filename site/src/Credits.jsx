@@ -1,15 +1,8 @@
 import React from 'react';
 import {Col, Container, Row} from "react-bootstrap";
 import { SocialIcon } from 'react-social-icons';
-import { ApolloProvider } from '@apollo/react-hooks';
-import { ApolloClient, gql } from 'apollo-boost';
 
 function Credits() {
-    const clientParam = {uri: '/graphql'};
-    const client = new ApolloClient(clientParam);
-
-    const query = gql`{}`;
-
     return (
         <Container className="justify-content-center" style={{marginTop: "3em"}}>
             <div className="text-center">
@@ -17,9 +10,6 @@ function Credits() {
                 <br/>
                 <h3 style={{fontFamily: `'Karla', sans-serif`}}> <a href="https://github.com/bellaroseee/vision-project">Code</a> </h3>
             </div>
-            <ApolloProvider client={client}>
-                TEST
-            </ApolloProvider>
             <Col lg={10} style={{fontFamily: `'Karla', sans-serif`}}>
                 <Row>
                     <Col sm={{span: 5, offset: 3}}>
