@@ -10,7 +10,7 @@ If you plan on running the server locally, you will also want to have GPU suppor
 You will also need to have NodeJS installed for the website to work if you plan on running it locally via `npm`.
 
 ## Website
-To view the website, either visit the [link directly here](https://bellaroseee.github.io/vision-project/) or by
+To view the website, either visit the [link directly here](https://bellaroseee.github.io/starry-bird/) or by
 first going into the `site` directory (`cd site`) and then running the Node Package Manager (`npm install` and then `npm start`). Then visit
 the URL `localhost:3000`
 
@@ -38,6 +38,7 @@ Then you can run the server by calling `python3 server.py`.
 #### Running through Server Proxy (Google Colab)
 If your computer does not GPU support and you wish to demo still, you can head on to [Google Colab](http://colab.research.google.com/)
 and create a new notebook with the contents in `server.py` and the `nst.py`. You will still have to install `flask`, `flask_cors` and `flask_ngrok` in the notebook.
+Alternatively, you can also download the provided `gpuServerProxy.ipynb` file and run that on Colab.
 Make sure to enable GPU acceleration by going into Runtime > Change Runtime Type and change the Hardware Acceleration to GPU.
 <br/><br/>
 Once that is done, run the cell with the `server.py` code. The output of the server should produce an `ngrok` link that looks like `http://<random>.ngrok.io`. Copy this link
