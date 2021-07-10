@@ -5,7 +5,7 @@ Starry Bird is the final project for the CSE 455: Computer Vision course taught 
 ## Prerequisites
 To run the demo of this program you will need to have `Tensorflow 2` installed, with Python 3.
 <br/>
-If you plan on running the server locally, you will also want to have GPU support since it will take long without.
+If you plan on running the server locally, you will also want to have GPU support since it will take long without one.
 <br/>
 You will also need to have NodeJS installed for the website to work if you plan on running it locally via `npm`.
 
