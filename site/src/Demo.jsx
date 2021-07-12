@@ -127,7 +127,7 @@ class Demo extends Component {
         }
         if (this.state.nonLocalServer !== ""
             && this.isURL(this.state.nonLocalServer)
-            && !this.state.nonLocalServer.endsWith(".ngrok.io/")) {
+            && (!this.state.nonLocalServer.endsWith(".ngrok.io/") || this.state.nonLocalServer.endsWith(".ngrok.io"))) {
             alert("ngrok link is not valid!");
             return;
         }
