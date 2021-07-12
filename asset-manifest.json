@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/starry-bird/static/css/main.b495b3c8.chunk.css",
-    "main.js": "/starry-bird/static/js/main.cba4dd00.chunk.js",
-    "main.js.map": "/starry-bird/static/js/main.cba4dd00.chunk.js.map",
+    "main.css": "/starry-bird/static/css/main.c72de471.chunk.css",
+    "main.js": "/starry-bird/static/js/main.78deb0e0.chunk.js",
+    "main.js.map": "/starry-bird/static/js/main.78deb0e0.chunk.js.map",
     "runtime-main.js": "/starry-bird/static/js/runtime-main.2efb0163.js",
     "runtime-main.js.map": "/starry-bird/static/js/runtime-main.2efb0163.js.map",
     "static/css/2.4c97ca4f.chunk.css": "/starry-bird/static/css/2.4c97ca4f.chunk.css",
-    "static/js/2.85700e3f.chunk.js": "/starry-bird/static/js/2.85700e3f.chunk.js",
-    "static/js/2.85700e3f.chunk.js.map": "/starry-bird/static/js/2.85700e3f.chunk.js.map",
+    "static/js/2.92628d0f.chunk.js": "/starry-bird/static/js/2.92628d0f.chunk.js",
+    "static/js/2.92628d0f.chunk.js.map": "/starry-bird/static/js/2.92628d0f.chunk.js.map",
     "index.html": "/starry-bird/index.html",
     "static/css/2.4c97ca4f.chunk.css.map": "/starry-bird/static/css/2.4c97ca4f.chunk.css.map",
-    "static/css/main.b495b3c8.chunk.css.map": "/starry-bird/static/css/main.b495b3c8.chunk.css.map",
-    "static/js/2.85700e3f.chunk.js.LICENSE.txt": "/starry-bird/static/js/2.85700e3f.chunk.js.LICENSE.txt",
+    "static/css/main.c72de471.chunk.css.map": "/starry-bird/static/css/main.c72de471.chunk.css.map",
+    "static/js/2.92628d0f.chunk.js.LICENSE.txt": "/starry-bird/static/js/2.92628d0f.chunk.js.LICENSE.txt",
     "static/media/455video.056a9bba.mp4": "/starry-bird/static/media/455video.056a9bba.mp4",
     "static/media/abstract.0ebd852c.jpg": "/starry-bird/static/media/abstract.0ebd852c.jpg",
     "static/media/bird.8fc289ef.png": "/starry-bird/static/media/bird.8fc289ef.png",
@@ -24,13 +24,13 @@
     "static/media/starry_night.9dd219ea.jpg": "/starry-bird/static/media/starry_night.9dd219ea.jpg",
     "static/media/starrybird.f0469307.jpg": "/starry-bird/static/media/starrybird.f0469307.jpg",
     "static/media/vgg19.9eb55b9e.png": "/starry-bird/static/media/vgg19.9eb55b9e.png",
-    "static/media/wheatfield.953ae0a9.jpg": "/starry-bird/static/media/wheatfield.953ae0a9.jpg"
+    "static/media/waves.619c9cbb.jpg": "/starry-bird/static/media/waves.619c9cbb.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.2efb0163.js",
     "static/css/2.4c97ca4f.chunk.css",
-    "static/js/2.85700e3f.chunk.js",
-    "static/css/main.b495b3c8.chunk.css",
-    "static/js/main.cba4dd00.chunk.js"
+    "static/js/2.92628d0f.chunk.js",
+    "static/css/main.c72de471.chunk.css",
+    "static/js/main.78deb0e0.chunk.js"
   ]
 }
