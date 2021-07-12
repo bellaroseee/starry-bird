@@ -58,7 +58,7 @@ function About() {
                             </ol>
                             <h4 style={{fontFamily: "'Fredoka One', cursive"}}>Additional Functionality</h4>
                             <p style={{fontFamily: `'Karla', sans-serif`}}>
-                                Mulitiple style images can be combined to be applied to the content image.
+                                Multiple style images can be combined to be applied to the content image.
                             </p>
                         </Container>
                     </Tab>
